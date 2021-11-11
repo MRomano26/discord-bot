@@ -17,4 +17,12 @@ async def play(ctx, url : str):
         return await ctx.send("Maybe try being in a channel mate.")
     # we'll add music playing functionality later
 
+@client.command()
+async def leave(ctx):
+    voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
+    if voice.is_connected():
+        await voice.disconnect()
+    else:
+        await ctx.send("I'm already gone.")
+
 client.run("TOKEN")

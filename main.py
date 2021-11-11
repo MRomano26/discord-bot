@@ -13,4 +13,4 @@ async def play(ctx, url : str):
     except AttributeError:
         return await ctx.send("Maybe try being in a channel mate.")
 
-client.run("OTA4NDczMTg5NTE5MjIwNzM2.YY2Plg.Wm4IEYVayjCAoUVhjouKWd3Fy6U")
+client.run("TOKEN")

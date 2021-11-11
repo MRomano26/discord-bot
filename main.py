@@ -29,8 +29,16 @@ async def leave(ctx):
 async def pause(ctx):
     voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
     if voice.is_playing():
-        await voice.pause()
+        voice.pause()
     else:
-        await ctx.send("I'm not even playing something")
+        await ctx.send("I'm not even playing something.")
+
+@client.command()
+async def resume(ctx):
+    voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
+    if voice.is_paused():
+        voice.resume()
+    else:
+        await ctx.send("I haven't paused anything.")
     
 client.run("TOKEN")

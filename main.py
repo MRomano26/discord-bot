@@ -25,4 +25,12 @@ async def leave(ctx):
     else:
         await ctx.send("I'm already gone.")
 
+@client.command()
+async def pause(ctx):
+    voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
+    if voice.is_playing():
+        await voice.pause()
+    else:
+        await ctx.send("I'm not even playing something")
+    
 client.run("TOKEN")

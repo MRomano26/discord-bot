@@ -3,6 +3,7 @@ import discord
 from discord.errors import ClientException
 import yt_dlp
 from discord.ext import commands
+from keep_alive import keep_alive
 
 
 client = commands.Bot(command_prefix="!")
@@ -64,4 +65,5 @@ async def resume(ctx):
     else:
         await ctx.send("I haven't paused anything.")
 
+keep_alive()
 client.run(os.getenv("TOKEN"))

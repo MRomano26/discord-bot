@@ -72,6 +72,17 @@ async def resume(ctx):
     except AttributeError:
         return await ctx.send("Bruh, I'm not even in the voice channel.")
 
+
+@client.command()
+async def options(ctx):
+    text = """List of commands:
+    !play [search]: Plays audio from youtube video in voice channel
+    !pause: Pauses audio playing
+    !resume: Resumes audio that is paused
+    !leave: Forces bot to leave voice channel
+    !options: Posts list of commands"""
+    await ctx.send(text)
+
 keep_alive()
 
 client.run(os.getenv("TOKEN"))

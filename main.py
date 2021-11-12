@@ -57,4 +57,4 @@ async def resume(ctx):
     else:
         await ctx.send("I haven't paused anything.")
     
-client.run("TOKEN")
+client.run(os.getenv("TOKEN"))

@@ -82,5 +82,5 @@ async def options(ctx):
     await ctx.send("!leave: Forces bot to leave voice channel")
 
 keep_alive()
-client.run("OTA4NDczMTg5NTE5MjIwNzM2.YY2Plg.dHszeKQlKCW_i_Ttkz9fpbHeJ1M")
-# client.run(os.getenv("TOKEN"))
+
+client.run(os.getenv("TOKEN"))

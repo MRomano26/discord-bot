@@ -42,7 +42,7 @@ async def play(ctx, url: str):
 @client.command()
 async def leave(ctx):
     voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
-    if voice.is_connected():
+    if voice is not None:
         await voice.disconnect()
     else:
         await ctx.send("I'm already gone.")
@@ -51,19 +51,25 @@ async def leave(ctx):
 @client.command()
 async def pause(ctx):
     voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
-    if voice.is_playing():
-        voice.pause()
-    else:
-        await ctx.send("I'm not even playing something.")
+    try:
+        if voice.is_playing():
+            voice.pause()
+        else:
+            await ctx.send("Already paused.")
+    except AttributeError:
+        return await ctx.send("Bruh, I'm not even in the channel.")
 
 
 @client.command()
 async def resume(ctx):
     voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
-    if voice.is_paused():
-        voice.resume()
-    else:
-        await ctx.send("I haven't paused anything.")
+    try:
+        if voice.is_paused():
+            voice.resume()
+        else:
+            await ctx.send("I haven't paused anything.")
+    except AttributeError:
+        return await ctx.send("Bruh, I'm not even in the channel.")
 
 keep_alive()
 client.run(os.getenv("TOKEN"))

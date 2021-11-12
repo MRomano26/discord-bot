@@ -12,6 +12,9 @@ async def play(ctx, url : str):
 
     try:
         voiceChannel = ctx.author.voice.channel
+        voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
+        if voice is not None:
+            await voice.disconnect()
         await voiceChannel.connect()
         voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
     except AttributeError:

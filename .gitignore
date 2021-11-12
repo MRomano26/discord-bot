@@ -1,3 +1,11 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
 # virtual environment
 bot-env/
+
+# vs code
 .vscode/
+
+# Song file
+song.webm

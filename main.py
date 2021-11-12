@@ -20,7 +20,7 @@ async def play(ctx, url: str):
         await voiceChannel.connect()
         voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
     except AttributeError:
-        return await ctx.send("Maybe try being in a channel mate.")
+        return await ctx.send("Maybe try being in a voice channel mate.")
     except ClientException:
         return
 
@@ -29,6 +29,7 @@ async def play(ctx, url: str):
         os.remove("song.webm")
 
     ydl_opts = {
+        'default_search': 'auto',
         'format': '249/250/251'
     }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -57,7 +58,7 @@ async def pause(ctx):
         else:
             await ctx.send("Already paused.")
     except AttributeError:
-        return await ctx.send("Bruh, I'm not even in the channel.")
+        return await ctx.send("Bruh, I'm not even in the voice channel.")
 
 
 @client.command()
@@ -69,7 +70,8 @@ async def resume(ctx):
         else:
             await ctx.send("I haven't paused anything.")
     except AttributeError:
-        return await ctx.send("Bruh, I'm not even in the channel.")
+        return await ctx.send("Bruh, I'm not even in the voice channel.")
 
 keep_alive()
-client.run(os.getenv("TOKEN"))
+client.run("OTA4NDczMTg5NTE5MjIwNzM2.YY2Plg.dHszeKQlKCW_i_Ttkz9fpbHeJ1M")
+# client.run(os.getenv("TOKEN"))

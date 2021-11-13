@@ -36,8 +36,10 @@ async def play(ctx, url: str):
         ydl.download([url])
     for file in os.listdir("./"):
         if file.endswith(".webm"):
+            songName = file
             os.rename(file, "song.webm")
     voice.play(discord.FFmpegOpusAudio("song.webm"))
+    await ctx.send(f'Now Playing: {songName}')
 
 
 @client.command()

@@ -144,5 +144,5 @@ async def options(ctx):
     await ctx.send(text)
 
 keep_alive()
-client.run("OTA4NDczMTg5NTE5MjIwNzM2.YY2Plg.6_SB7InMU68Qve8W1hxUEPNDnDo")
-# client.run(os.getenv("TOKEN"))
+
+client.run(os.getenv("TOKEN"))

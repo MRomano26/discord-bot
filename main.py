@@ -2,7 +2,6 @@ import os
 import asyncio
 import discord
 from discord.errors import ClientException
-from discord.ext.commands.core import check
 import yt_dlp
 from discord.ext import commands
 from keep_alive import keep_alive

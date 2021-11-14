@@ -82,8 +82,11 @@ async def play(ctx, *, search: str):
 
 @client.command(pass_context=True)
 async def leave(ctx):
+    global songQueue
     voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
     if voice is not None:
+        songQueue = []
+        await ctx.send("Cleaned queue.")
         await voice.disconnect()
     else:
         await ctx.send("I'm already gone.")

@@ -12,13 +12,14 @@ the user is in.
 * !pause: Pauses audio currently playing
 * !resume: Resumes audio that is paused
 * !skip: Skips audio that is currently playing or paused 
-* !leave: Forces bot to leave voice channel
+* !leave: Forces bot to leave voice channel and cleans queue
 * !options: Posts list of commands
 
 #### Update Log
 
 * Version 1.2.1
   *  Removed need for quotations when using command !play
+  *  Fixed bug with !leave command where it wouldn't clean the queue
 * Version 1.2
   *  Bot now adds searches to a queue when audio is playing or paused
   *  Added skip command that skips audio currently playing or paused

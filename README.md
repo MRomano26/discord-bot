@@ -7,7 +7,7 @@ the user is in.
 
 #### List of commands:
 
-* !play ["search"]: Plays audio from youtube video in voice channel (Needs "")
+* !play "[search]": Plays audio from youtube video in voice channel (Needs "")
 * !pause: Pauses audio playing
 * !resume: Resumes audio that is paused
 * !leave: Forces bot to leave voice channel

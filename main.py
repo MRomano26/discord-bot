@@ -55,7 +55,7 @@ async def youtube_download(ctx, search):
 
 
 @client.command(pass_context=True)
-async def play(ctx, search: str):
+async def play(ctx, *, search: str):
 
     try:
         voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
@@ -131,7 +131,7 @@ async def skip(ctx):
 @client.command(pass_context=True)
 async def options(ctx):
     text = """**List of commands:**
-    **!play "[search]"**: Plays audio from youtube video in voice channel
+    **!play [search]**: Plays audio from youtube video in voice channel
     or adds search to a queue when audio is already playing or paused
     **!pause**: Pauses audio currently playing
     **!resume**: Resumes audio that is paused
@@ -141,5 +141,5 @@ async def options(ctx):
     await ctx.send(text)
 
 keep_alive()
-
-client.run(os.getenv("TOKEN"))
+client.run("OTA4NDczMTg5NTE5MjIwNzM2.YY2Plg.6_SB7InMU68Qve8W1hxUEPNDnDo")
+# client.run(os.getenv("TOKEN"))

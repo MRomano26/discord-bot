@@ -58,17 +58,15 @@ async def youtube_download(ctx, search):
 async def play(ctx, search: str):
 
     try:
-        voiceChannel = ctx.author.voice.channel
         voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
         if voice is not None:
-            if voiceChannel != voice.channel:
-                return await ctx.send("You're not in the right voice channel")
             if voice.is_playing() or voice.is_paused():
                 # Adds to queue if already playing
                 songQueue.append(search)
                 return await ctx.send("Added to queue.")
             else:
                 await voice.disconnect()
+        voiceChannel = ctx.author.voice.channel
         await voiceChannel.connect()
         voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
     except AttributeError:
@@ -97,6 +95,7 @@ async def pause(ctx):
     try:
         if voice.is_playing():
             voice.pause()
+            await ctx.send("Audio paused.")
         else:
             await ctx.send("Already paused.")
     except AttributeError:
@@ -109,6 +108,7 @@ async def resume(ctx):
     try:
         if voice.is_paused():
             voice.resume()
+            await ctx.send("Audio resumed")
         else:
             await ctx.send("I haven't paused anything.")
     except AttributeError:

@@ -27,7 +27,7 @@ async def check_queue(ctx):
         await check_queue(ctx)
     else:
         await voice.disconnect()
-        await ctx.send("No more audio to play. Disconnected")
+        await ctx.send("No more audio to play. Disconnected.")
 
 
 async def youtube_download(ctx, search):
@@ -41,7 +41,8 @@ async def youtube_download(ctx, search):
         'format': '249/250/251'
     }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        await ctx.send("Currently downloading audio...")
+        message = "Currently downloading audio... [Commands will not work]"
+        await ctx.send(message)
         ydl.download([search])
         await asyncio.sleep(0)
 
@@ -115,13 +116,28 @@ async def resume(ctx):
 
 
 @client.command(pass_context=True)
+async def skip(ctx):
+    voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
+    try:
+        if voice.is_playing() or voice.is_paused:
+            voice.stop()
+            await ctx.send("Audio skipped.")
+        else:
+            await ctx.send("I'm not even playing anything.")
+    except AttributeError:
+        return await ctx.send("Bruh, I'm not even in the voice channel.")
+
+
+@client.command(pass_context=True)
 async def options(ctx):
-    text = """List of commands:
-    !play "[search]": Plays audio from youtube video in voice channel
-    !pause: Pauses audio playing
-    !resume: Resumes audio that is paused
-    !leave: Forces bot to leave voice channel
-    !options: Posts list of commands"""
+    text = """**List of commands:**
+    **!play "[search]"**: Plays audio from youtube video in voice channel
+    or adds search to a queue when audio is already playing or paused
+    **!pause**: Pauses audio currently playing
+    **!resume**: Resumes audio that is paused
+    **!skip**: Skips audio that is currently playing or paused
+    **!leave**: Forces bot to leave voice channel
+    **!options**: Posts list of commands"""
     await ctx.send(text)
 
 keep_alive()

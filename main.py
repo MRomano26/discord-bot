@@ -27,7 +27,7 @@ async def check_queue(ctx):
         await check_queue(ctx)
     else:
         await voice.disconnect()
-        await ctx.send("No more songs to play. Disconnected")
+        await ctx.send("No more audio to play. Disconnected")
 
 
 async def youtube_download(ctx, search):
@@ -41,12 +41,15 @@ async def youtube_download(ctx, search):
         'format': '249/250/251'
     }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        await asyncio.sleep(0)
+        await ctx.send("Currently downloading audio...")
         ydl.download([search])
+        await asyncio.sleep(0)
+
     for file in os.listdir("./"):
         if file.endswith(".webm"):
             songName = file
             os.rename(file, "song.webm")
+
     await ctx.send(f'Now Playing: {songName}')
 
 
@@ -57,6 +60,8 @@ async def play(ctx, search: str):
         voiceChannel = ctx.author.voice.channel
         voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
         if voice is not None:
+            if voiceChannel != voice.channel:
+                return await ctx.send("You're not in the right voice channel")
             if voice.is_playing() or voice.is_paused():
                 # Adds to queue if already playing
                 songQueue.append(search)
@@ -66,7 +71,6 @@ async def play(ctx, search: str):
         await voiceChannel.connect()
         voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
     except AttributeError:
-        print(voice)
         return await ctx.send("Maybe try being in a voice channel mate.")
     except ClientException:
         return

@@ -43,7 +43,6 @@ async def youtube_download(ctx, search):
         message = "Currently downloading audio... [Commands will not work]"
         await ctx.send(message)
         ydl.download([search])
-        await asyncio.sleep(0)
 
     for file in os.listdir("./"):
         if file.endswith(".webm"):
@@ -138,7 +137,7 @@ async def options(ctx):
     **!pause**: Pauses audio currently playing
     **!resume**: Resumes audio that is paused
     **!skip**: Skips audio that is currently playing or paused
-    **!leave**: Forces bot to leave voice channel
+    **!leave**: Forces bot to leave voice channel and cleans queue
     **!options**: Posts list of commands"""
     await ctx.send(text)
 

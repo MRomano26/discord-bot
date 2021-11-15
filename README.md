@@ -17,6 +17,8 @@ the user is in.
 
 #### Update Log
 
+* Version 1.2.2
+  *  Fixed bug where sometimes .webm files would be left in the directory
 * Version 1.2.1
   *  Removed need for quotations when using command !play
   *  Fixed bug with !leave command where it wouldn't clean the queue
